@@ -1,0 +1,729 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Nordwind.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Artikel">
+          <Key>
+            <PropertyRef Name="Artikel_Nr" />
+          </Key>
+          <Property Name="Artikel_Nr" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Artikelname" Type="nvarchar" MaxLength="40" Nullable="false" />
+          <Property Name="Lieferanten_Nr" Type="int" />
+          <Property Name="Kategorie_Nr" Type="int" />
+          <Property Name="Liefereinheit" Type="nvarchar" MaxLength="25" />
+          <Property Name="Einzelpreis" Type="money" />
+          <Property Name="Lagerbestand" Type="smallint" />
+          <Property Name="BestellteEinheiten" Type="smallint" />
+          <Property Name="Mindestbestand" Type="smallint" />
+          <Property Name="Auslaufartikel" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Bestelldetails">
+          <Key>
+            <PropertyRef Name="Bestell_Nr" />
+            <PropertyRef Name="Artikel_Nr" />
+          </Key>
+          <Property Name="Bestell_Nr" Type="int" Nullable="false" />
+          <Property Name="Artikel_Nr" Type="int" Nullable="false" />
+          <Property Name="Einzelpreis" Type="money" Nullable="false" />
+          <Property Name="Anzahl" Type="smallint" Nullable="false" />
+          <Property Name="Rabatt" Type="real" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Bestellungen">
+          <Key>
+            <PropertyRef Name="Bestell_Nr" />
+          </Key>
+          <Property Name="Bestell_Nr" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Kunden_Code" Type="nvarchar" MaxLength="5" />
+          <Property Name="Personal_Nr" Type="int" />
+          <Property Name="Bestelldatum" Type="datetime" />
+          <Property Name="Lieferdatum" Type="datetime" />
+          <Property Name="Versanddatum" Type="datetime" />
+          <Property Name="VersandUeber" Type="int" />
+          <Property Name="Frachtkosten" Type="money" />
+          <Property Name="Empfaenger" Type="nvarchar" MaxLength="40" />
+          <Property Name="Straße" Type="nvarchar" MaxLength="60" />
+          <Property Name="Ort" Type="nvarchar" MaxLength="15" />
+          <Property Name="Region" Type="nvarchar" MaxLength="15" />
+          <Property Name="PLZ" Type="nvarchar" MaxLength="10" />
+          <Property Name="Bestimmungsland" Type="nvarchar" MaxLength="15" />
+        </EntityType>
+        <EntityType Name="Kategorien">
+          <Key>
+            <PropertyRef Name="Kategorie_Nr" />
+          </Key>
+          <Property Name="Kategorie_Nr" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Kategoriename" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="Beschreibung" Type="ntext" />
+          <Property Name="Abbildung" Type="image" />
+        </EntityType>
+        <EntityType Name="Kunden">
+          <Key>
+            <PropertyRef Name="Kunden_Code" />
+          </Key>
+          <Property Name="Kunden_Code" Type="nvarchar" MaxLength="5" Nullable="false" />
+          <Property Name="Firma" Type="nvarchar" MaxLength="40" Nullable="false" />
+          <Property Name="Kontaktperson" Type="nvarchar" MaxLength="30" />
+          <Property Name="Position" Type="nvarchar" MaxLength="30" />
+          <Property Name="Straße" Type="nvarchar" MaxLength="60" />
+          <Property Name="Ort" Type="nvarchar" MaxLength="15" />
+          <Property Name="Region" Type="nvarchar" MaxLength="15" />
+          <Property Name="PLZ" Type="nvarchar" MaxLength="10" />
+          <Property Name="Land" Type="nvarchar" MaxLength="15" />
+          <Property Name="Telefon" Type="nvarchar" MaxLength="24" />
+          <Property Name="Telefax" Type="nvarchar" MaxLength="24" />
+        </EntityType>
+        <EntityType Name="Lieferanten">
+          <Key>
+            <PropertyRef Name="Lieferanten_Nr" />
+          </Key>
+          <Property Name="Lieferanten_Nr" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Firma" Type="nvarchar" MaxLength="40" Nullable="false" />
+          <Property Name="Kontaktperson" Type="nvarchar" MaxLength="30" />
+          <Property Name="Position" Type="nvarchar" MaxLength="30" />
+          <Property Name="Straße" Type="nvarchar" MaxLength="60" />
+          <Property Name="Ort" Type="nvarchar" MaxLength="15" />
+          <Property Name="Region" Type="nvarchar" MaxLength="15" />
+          <Property Name="PLZ" Type="nvarchar" MaxLength="10" />
+          <Property Name="Land" Type="nvarchar" MaxLength="15" />
+          <Property Name="Telefon" Type="nvarchar" MaxLength="24" />
+          <Property Name="Telefax" Type="nvarchar" MaxLength="24" />
+          <Property Name="Homepage" Type="ntext" />
+        </EntityType>
+        <EntityType Name="Personal">
+          <Key>
+            <PropertyRef Name="Personal_Nr" />
+          </Key>
+          <Property Name="Personal_Nr" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nachname" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="Vorname" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="Position" Type="nvarchar" MaxLength="30" />
+          <Property Name="Anrede" Type="nvarchar" MaxLength="25" />
+          <Property Name="Geburtsdatum" Type="datetime" />
+          <Property Name="Einstellung" Type="datetime" />
+          <Property Name="Straße" Type="nvarchar" MaxLength="60" />
+          <Property Name="Ort" Type="nvarchar" MaxLength="15" />
+          <Property Name="Region" Type="nvarchar" MaxLength="15" />
+          <Property Name="PLZ" Type="nvarchar" MaxLength="10" />
+          <Property Name="Land" Type="nvarchar" MaxLength="15" />
+          <Property Name="TelefonPrivat" Type="nvarchar" MaxLength="24" />
+          <Property Name="DurchwahlBuero" Type="nvarchar" MaxLength="4" />
+          <Property Name="Foto" Type="image" />
+          <Property Name="Bemerkungen" Type="ntext" />
+          <Property Name="Vorgesetzter" Type="int" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="Versandfirmen">
+          <Key>
+            <PropertyRef Name="Firmen_Nr" />
+          </Key>
+          <Property Name="Firmen_Nr" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Firma" Type="nvarchar" MaxLength="40" Nullable="false" />
+          <Property Name="Telefon" Type="nvarchar" MaxLength="24" />
+        </EntityType>
+        <Association Name="Artikel_FK00">
+          <End Role="Kategorien" Type="Self.Kategorien" Multiplicity="0..1" />
+          <End Role="Artikel" Type="Self.Artikel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kategorien">
+              <PropertyRef Name="Kategorie_Nr" />
+            </Principal>
+            <Dependent Role="Artikel">
+              <PropertyRef Name="Kategorie_Nr" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Artikel_FK01">
+          <End Role="Lieferanten" Type="Self.Lieferanten" Multiplicity="0..1" />
+          <End Role="Artikel" Type="Self.Artikel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Lieferanten">
+              <PropertyRef Name="Lieferanten_Nr" />
+            </Principal>
+            <Dependent Role="Artikel">
+              <PropertyRef Name="Lieferanten_Nr" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Bestelldetails_FK00">
+          <End Role="Artikel" Type="Self.Artikel" Multiplicity="1" />
+          <End Role="Bestelldetails" Type="Self.Bestelldetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Artikel">
+              <PropertyRef Name="Artikel_Nr" />
+            </Principal>
+            <Dependent Role="Bestelldetails">
+              <PropertyRef Name="Artikel_Nr" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Bestelldetails_FK01">
+          <End Role="Bestellungen" Type="Self.Bestellungen" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Bestelldetails" Type="Self.Bestelldetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Bestellungen">
+              <PropertyRef Name="Bestell_Nr" />
+            </Principal>
+            <Dependent Role="Bestelldetails">
+              <PropertyRef Name="Bestell_Nr" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Bestellungen_FK00">
+          <End Role="Kunden" Type="Self.Kunden" Multiplicity="0..1" />
+          <End Role="Bestellungen" Type="Self.Bestellungen" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kunden">
+              <PropertyRef Name="Kunden_Code" />
+            </Principal>
+            <Dependent Role="Bestellungen">
+              <PropertyRef Name="Kunden_Code" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Bestellungen_FK01">
+          <End Role="Personal" Type="Self.Personal" Multiplicity="0..1" />
+          <End Role="Bestellungen" Type="Self.Bestellungen" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Personal">
+              <PropertyRef Name="Personal_Nr" />
+            </Principal>
+            <Dependent Role="Bestellungen">
+              <PropertyRef Name="Personal_Nr" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Bestellungen_FK02">
+          <End Role="Versandfirmen" Type="Self.Versandfirmen" Multiplicity="0..1" />
+          <End Role="Bestellungen" Type="Self.Bestellungen" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Versandfirmen">
+              <PropertyRef Name="Firmen_Nr" />
+            </Principal>
+            <Dependent Role="Bestellungen">
+              <PropertyRef Name="VersandUeber" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Personal_Personal">
+          <End Role="Personal" Type="Self.Personal" Multiplicity="0..1" />
+          <End Role="Personal1" Type="Self.Personal" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Personal">
+              <PropertyRef Name="Personal_Nr" />
+            </Principal>
+            <Dependent Role="Personal1">
+              <PropertyRef Name="Vorgesetzter" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="NordwindStoreContainer">
+          <EntitySet Name="Artikel" EntityType="Self.Artikel" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Bestelldetails" EntityType="Self.Bestelldetails" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Bestellungen" EntityType="Self.Bestellungen" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Kategorien" EntityType="Self.Kategorien" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Kunden" EntityType="Self.Kunden" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Lieferanten" EntityType="Self.Lieferanten" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Personal" EntityType="Self.Personal" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Versandfirmen" EntityType="Self.Versandfirmen" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="Artikel_FK00" Association="Self.Artikel_FK00">
+            <End Role="Kategorien" EntitySet="Kategorien" />
+            <End Role="Artikel" EntitySet="Artikel" />
+          </AssociationSet>
+          <AssociationSet Name="Artikel_FK01" Association="Self.Artikel_FK01">
+            <End Role="Lieferanten" EntitySet="Lieferanten" />
+            <End Role="Artikel" EntitySet="Artikel" />
+          </AssociationSet>
+          <AssociationSet Name="Bestelldetails_FK00" Association="Self.Bestelldetails_FK00">
+            <End Role="Artikel" EntitySet="Artikel" />
+            <End Role="Bestelldetails" EntitySet="Bestelldetails" />
+          </AssociationSet>
+          <AssociationSet Name="Bestelldetails_FK01" Association="Self.Bestelldetails_FK01">
+            <End Role="Bestellungen" EntitySet="Bestellungen" />
+            <End Role="Bestelldetails" EntitySet="Bestelldetails" />
+          </AssociationSet>
+          <AssociationSet Name="Bestellungen_FK00" Association="Self.Bestellungen_FK00">
+            <End Role="Kunden" EntitySet="Kunden" />
+            <End Role="Bestellungen" EntitySet="Bestellungen" />
+          </AssociationSet>
+          <AssociationSet Name="Bestellungen_FK01" Association="Self.Bestellungen_FK01">
+            <End Role="Personal" EntitySet="Personal" />
+            <End Role="Bestellungen" EntitySet="Bestellungen" />
+          </AssociationSet>
+          <AssociationSet Name="Bestellungen_FK02" Association="Self.Bestellungen_FK02">
+            <End Role="Versandfirmen" EntitySet="Versandfirmen" />
+            <End Role="Bestellungen" EntitySet="Bestellungen" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Personal_Personal" Association="Self.FK_Personal_Personal">
+            <End Role="Personal" EntitySet="Personal" />
+            <End Role="Personal1" EntitySet="Personal" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Nordwind" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Artikel">
+          <Key>
+            <PropertyRef Name="Artikel_Nr" />
+          </Key>
+          <Property Name="Artikel_Nr" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Artikelname" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Lieferanten_Nr" Type="Int32" />
+          <Property Name="Kategorie_Nr" Type="Int32" />
+          <Property Name="Liefereinheit" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+          <Property Name="Einzelpreis" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="Lagerbestand" Type="Int16" />
+          <Property Name="BestellteEinheiten" Type="Int16" />
+          <Property Name="Mindestbestand" Type="Int16" />
+          <Property Name="Auslaufartikel" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Kategorien" Relationship="Self.Artikel_FK00" FromRole="Artikel" ToRole="Kategorien" />
+          <NavigationProperty Name="Lieferanten" Relationship="Self.Artikel_FK01" FromRole="Artikel" ToRole="Lieferanten" />
+          <NavigationProperty Name="Bestelldetails" Relationship="Self.Bestelldetails_FK00" FromRole="Artikel" ToRole="Bestelldetails" />
+        </EntityType>
+        <EntityType Name="Bestelldetails">
+          <Key>
+            <PropertyRef Name="Bestell_Nr" />
+            <PropertyRef Name="Artikel_Nr" />
+          </Key>
+          <Property Name="Bestell_Nr" Type="Int32" Nullable="false" />
+          <Property Name="Artikel_Nr" Type="Int32" Nullable="false" />
+          <Property Name="Einzelpreis" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="Anzahl" Type="Int16" Nullable="false" />
+          <Property Name="Rabatt" Type="Single" Nullable="false" />
+          <NavigationProperty Name="Artikel" Relationship="Self.Bestelldetails_FK00" FromRole="Bestelldetails" ToRole="Artikel" />
+          <NavigationProperty Name="Bestellungen" Relationship="Self.Bestelldetails_FK01" FromRole="Bestelldetails" ToRole="Bestellungen" />
+        </EntityType>
+        <EntityType Name="Bestellungen">
+          <Key>
+            <PropertyRef Name="Bestell_Nr" />
+          </Key>
+          <Property Name="Bestell_Nr" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Kunden_Code" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+          <Property Name="Personal_Nr" Type="Int32" />
+          <Property Name="Bestelldatum" Type="DateTime" Precision="3" />
+          <Property Name="Lieferdatum" Type="DateTime" Precision="3" />
+          <Property Name="Versanddatum" Type="DateTime" Precision="3" />
+          <Property Name="VersandUeber" Type="Int32" />
+          <Property Name="Frachtkosten" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="Empfaenger" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+          <Property Name="Straße" Type="String" MaxLength="60" FixedLength="false" Unicode="true" />
+          <Property Name="Ort" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="Region" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="PLZ" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="Bestimmungsland" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Bestelldetails" Relationship="Self.Bestelldetails_FK01" FromRole="Bestellungen" ToRole="Bestelldetails" />
+          <NavigationProperty Name="Kunden" Relationship="Self.Bestellungen_FK00" FromRole="Bestellungen" ToRole="Kunden" />
+          <NavigationProperty Name="Personal" Relationship="Self.Bestellungen_FK01" FromRole="Bestellungen" ToRole="Personal" />
+          <NavigationProperty Name="Versandfirmen" Relationship="Self.Bestellungen_FK02" FromRole="Bestellungen" ToRole="Versandfirmen" />
+        </EntityType>
+        <EntityType Name="Kategorien">
+          <Key>
+            <PropertyRef Name="Kategorie_Nr" />
+          </Key>
+          <Property Name="Kategorie_Nr" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Kategoriename" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Beschreibung" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Abbildung" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <NavigationProperty Name="Artikel" Relationship="Self.Artikel_FK00" FromRole="Kategorien" ToRole="Artikel" />
+        </EntityType>
+        <EntityType Name="Kunden">
+          <Key>
+            <PropertyRef Name="Kunden_Code" />
+          </Key>
+          <Property Name="Kunden_Code" Type="String" MaxLength="5" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Firma" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Kontaktperson" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="Position" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="Straße" Type="String" MaxLength="60" FixedLength="false" Unicode="true" />
+          <Property Name="Ort" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="Region" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="PLZ" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="Land" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="Telefon" Type="String" MaxLength="24" FixedLength="false" Unicode="true" />
+          <Property Name="Telefax" Type="String" MaxLength="24" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Bestellungen" Relationship="Self.Bestellungen_FK00" FromRole="Kunden" ToRole="Bestellungen" />
+        </EntityType>
+        <EntityType Name="Lieferanten">
+          <Key>
+            <PropertyRef Name="Lieferanten_Nr" />
+          </Key>
+          <Property Name="Lieferanten_Nr" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Firma" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Kontaktperson" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="Position" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="Straße" Type="String" MaxLength="60" FixedLength="false" Unicode="true" />
+          <Property Name="Ort" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="Region" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="PLZ" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="Land" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="Telefon" Type="String" MaxLength="24" FixedLength="false" Unicode="true" />
+          <Property Name="Telefax" Type="String" MaxLength="24" FixedLength="false" Unicode="true" />
+          <Property Name="Homepage" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Artikel" Relationship="Self.Artikel_FK01" FromRole="Lieferanten" ToRole="Artikel" />
+        </EntityType>
+        <EntityType Name="Personal">
+          <Key>
+            <PropertyRef Name="Personal_Nr" />
+          </Key>
+          <Property Name="Personal_Nr" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nachname" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Vorname" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Position" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="Anrede" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+          <Property Name="Geburtsdatum" Type="DateTime" Precision="3" />
+          <Property Name="Einstellung" Type="DateTime" Precision="3" />
+          <Property Name="Straße" Type="String" MaxLength="60" FixedLength="false" Unicode="true" />
+          <Property Name="Ort" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="Region" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="PLZ" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="Land" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="TelefonPrivat" Type="String" MaxLength="24" FixedLength="false" Unicode="true" />
+          <Property Name="DurchwahlBuero" Type="String" MaxLength="4" FixedLength="false" Unicode="true" />
+          <Property Name="Foto" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="Bemerkungen" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Vorgesetzter" Type="Int32" />
+          <NavigationProperty Name="Bestellungen" Relationship="Self.Bestellungen_FK01" FromRole="Personal" ToRole="Bestellungen" />
+          <NavigationProperty Name="Personal1" Relationship="Self.FK_Personal_Personal" FromRole="Personal" ToRole="Personal1" />
+          <NavigationProperty Name="Personal2" Relationship="Self.FK_Personal_Personal" FromRole="Personal1" ToRole="Personal" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Versandfirmen">
+          <Key>
+            <PropertyRef Name="Firmen_Nr" />
+          </Key>
+          <Property Name="Firmen_Nr" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Firma" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Telefon" Type="String" MaxLength="24" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Bestellungen" Relationship="Self.Bestellungen_FK02" FromRole="Versandfirmen" ToRole="Bestellungen" />
+        </EntityType>
+        <Association Name="Artikel_FK00">
+          <End Role="Kategorien" Type="Self.Kategorien" Multiplicity="0..1" />
+          <End Role="Artikel" Type="Self.Artikel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kategorien">
+              <PropertyRef Name="Kategorie_Nr" />
+            </Principal>
+            <Dependent Role="Artikel">
+              <PropertyRef Name="Kategorie_Nr" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Artikel_FK01">
+          <End Role="Lieferanten" Type="Self.Lieferanten" Multiplicity="0..1" />
+          <End Role="Artikel" Type="Self.Artikel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Lieferanten">
+              <PropertyRef Name="Lieferanten_Nr" />
+            </Principal>
+            <Dependent Role="Artikel">
+              <PropertyRef Name="Lieferanten_Nr" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Bestelldetails_FK00">
+          <End Role="Artikel" Type="Self.Artikel" Multiplicity="1" />
+          <End Role="Bestelldetails" Type="Self.Bestelldetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Artikel">
+              <PropertyRef Name="Artikel_Nr" />
+            </Principal>
+            <Dependent Role="Bestelldetails">
+              <PropertyRef Name="Artikel_Nr" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Bestelldetails_FK01">
+          <End Role="Bestellungen" Type="Self.Bestellungen" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Bestelldetails" Type="Self.Bestelldetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Bestellungen">
+              <PropertyRef Name="Bestell_Nr" />
+            </Principal>
+            <Dependent Role="Bestelldetails">
+              <PropertyRef Name="Bestell_Nr" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Bestellungen_FK00">
+          <End Role="Kunden" Type="Self.Kunden" Multiplicity="0..1" />
+          <End Role="Bestellungen" Type="Self.Bestellungen" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kunden">
+              <PropertyRef Name="Kunden_Code" />
+            </Principal>
+            <Dependent Role="Bestellungen">
+              <PropertyRef Name="Kunden_Code" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Bestellungen_FK01">
+          <End Role="Personal" Type="Self.Personal" Multiplicity="0..1" />
+          <End Role="Bestellungen" Type="Self.Bestellungen" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Personal">
+              <PropertyRef Name="Personal_Nr" />
+            </Principal>
+            <Dependent Role="Bestellungen">
+              <PropertyRef Name="Personal_Nr" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Bestellungen_FK02">
+          <End Role="Versandfirmen" Type="Self.Versandfirmen" Multiplicity="0..1" />
+          <End Role="Bestellungen" Type="Self.Bestellungen" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Versandfirmen">
+              <PropertyRef Name="Firmen_Nr" />
+            </Principal>
+            <Dependent Role="Bestellungen">
+              <PropertyRef Name="VersandUeber" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Personal_Personal">
+          <End Role="Personal" Type="Self.Personal" Multiplicity="0..1" />
+          <End Role="Personal1" Type="Self.Personal" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Personal">
+              <PropertyRef Name="Personal_Nr" />
+            </Principal>
+            <Dependent Role="Personal1">
+              <PropertyRef Name="Vorgesetzter" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="NordwindEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Artikel" EntityType="Self.Artikel" />
+          <EntitySet Name="Bestelldetails" EntityType="Self.Bestelldetails" />
+          <EntitySet Name="Bestellungen" EntityType="Self.Bestellungen" />
+          <EntitySet Name="Kategorien" EntityType="Self.Kategorien" />
+          <EntitySet Name="Kunden" EntityType="Self.Kunden" />
+          <EntitySet Name="Lieferanten" EntityType="Self.Lieferanten" />
+          <EntitySet Name="Personal" EntityType="Self.Personal" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <EntitySet Name="Versandfirmen" EntityType="Self.Versandfirmen" />
+          <AssociationSet Name="Artikel_FK00" Association="Self.Artikel_FK00">
+            <End Role="Kategorien" EntitySet="Kategorien" />
+            <End Role="Artikel" EntitySet="Artikel" />
+          </AssociationSet>
+          <AssociationSet Name="Artikel_FK01" Association="Self.Artikel_FK01">
+            <End Role="Lieferanten" EntitySet="Lieferanten" />
+            <End Role="Artikel" EntitySet="Artikel" />
+          </AssociationSet>
+          <AssociationSet Name="Bestelldetails_FK00" Association="Self.Bestelldetails_FK00">
+            <End Role="Artikel" EntitySet="Artikel" />
+            <End Role="Bestelldetails" EntitySet="Bestelldetails" />
+          </AssociationSet>
+          <AssociationSet Name="Bestelldetails_FK01" Association="Self.Bestelldetails_FK01">
+            <End Role="Bestellungen" EntitySet="Bestellungen" />
+            <End Role="Bestelldetails" EntitySet="Bestelldetails" />
+          </AssociationSet>
+          <AssociationSet Name="Bestellungen_FK00" Association="Self.Bestellungen_FK00">
+            <End Role="Kunden" EntitySet="Kunden" />
+            <End Role="Bestellungen" EntitySet="Bestellungen" />
+          </AssociationSet>
+          <AssociationSet Name="Bestellungen_FK01" Association="Self.Bestellungen_FK01">
+            <End Role="Personal" EntitySet="Personal" />
+            <End Role="Bestellungen" EntitySet="Bestellungen" />
+          </AssociationSet>
+          <AssociationSet Name="Bestellungen_FK02" Association="Self.Bestellungen_FK02">
+            <End Role="Versandfirmen" EntitySet="Versandfirmen" />
+            <End Role="Bestellungen" EntitySet="Bestellungen" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Personal_Personal" Association="Self.FK_Personal_Personal">
+            <End Role="Personal" EntitySet="Personal" />
+            <End Role="Personal1" EntitySet="Personal" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="NordwindStoreContainer" CdmEntityContainer="NordwindEntities">
+          <EntitySetMapping Name="Artikel">
+            <EntityTypeMapping TypeName="Nordwind.Artikel">
+              <MappingFragment StoreEntitySet="Artikel">
+                <ScalarProperty Name="Artikel_Nr" ColumnName="Artikel_Nr" />
+                <ScalarProperty Name="Artikelname" ColumnName="Artikelname" />
+                <ScalarProperty Name="Lieferanten_Nr" ColumnName="Lieferanten_Nr" />
+                <ScalarProperty Name="Kategorie_Nr" ColumnName="Kategorie_Nr" />
+                <ScalarProperty Name="Liefereinheit" ColumnName="Liefereinheit" />
+                <ScalarProperty Name="Einzelpreis" ColumnName="Einzelpreis" />
+                <ScalarProperty Name="Lagerbestand" ColumnName="Lagerbestand" />
+                <ScalarProperty Name="BestellteEinheiten" ColumnName="BestellteEinheiten" />
+                <ScalarProperty Name="Mindestbestand" ColumnName="Mindestbestand" />
+                <ScalarProperty Name="Auslaufartikel" ColumnName="Auslaufartikel" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Bestelldetails">
+            <EntityTypeMapping TypeName="Nordwind.Bestelldetails">
+              <MappingFragment StoreEntitySet="Bestelldetails">
+                <ScalarProperty Name="Bestell_Nr" ColumnName="Bestell_Nr" />
+                <ScalarProperty Name="Artikel_Nr" ColumnName="Artikel_Nr" />
+                <ScalarProperty Name="Einzelpreis" ColumnName="Einzelpreis" />
+                <ScalarProperty Name="Anzahl" ColumnName="Anzahl" />
+                <ScalarProperty Name="Rabatt" ColumnName="Rabatt" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Bestellungen">
+            <EntityTypeMapping TypeName="Nordwind.Bestellungen">
+              <MappingFragment StoreEntitySet="Bestellungen">
+                <ScalarProperty Name="Bestell_Nr" ColumnName="Bestell_Nr" />
+                <ScalarProperty Name="Kunden_Code" ColumnName="Kunden_Code" />
+                <ScalarProperty Name="Personal_Nr" ColumnName="Personal_Nr" />
+                <ScalarProperty Name="Bestelldatum" ColumnName="Bestelldatum" />
+                <ScalarProperty Name="Lieferdatum" ColumnName="Lieferdatum" />
+                <ScalarProperty Name="Versanddatum" ColumnName="Versanddatum" />
+                <ScalarProperty Name="VersandUeber" ColumnName="VersandUeber" />
+                <ScalarProperty Name="Frachtkosten" ColumnName="Frachtkosten" />
+                <ScalarProperty Name="Empfaenger" ColumnName="Empfaenger" />
+                <ScalarProperty Name="Straße" ColumnName="Straße" />
+                <ScalarProperty Name="Ort" ColumnName="Ort" />
+                <ScalarProperty Name="Region" ColumnName="Region" />
+                <ScalarProperty Name="PLZ" ColumnName="PLZ" />
+                <ScalarProperty Name="Bestimmungsland" ColumnName="Bestimmungsland" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Kategorien">
+            <EntityTypeMapping TypeName="Nordwind.Kategorien">
+              <MappingFragment StoreEntitySet="Kategorien">
+                <ScalarProperty Name="Kategorie_Nr" ColumnName="Kategorie_Nr" />
+                <ScalarProperty Name="Kategoriename" ColumnName="Kategoriename" />
+                <ScalarProperty Name="Beschreibung" ColumnName="Beschreibung" />
+                <ScalarProperty Name="Abbildung" ColumnName="Abbildung" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Kunden">
+            <EntityTypeMapping TypeName="Nordwind.Kunden">
+              <MappingFragment StoreEntitySet="Kunden">
+                <ScalarProperty Name="Kunden_Code" ColumnName="Kunden_Code" />
+                <ScalarProperty Name="Firma" ColumnName="Firma" />
+                <ScalarProperty Name="Kontaktperson" ColumnName="Kontaktperson" />
+                <ScalarProperty Name="Position" ColumnName="Position" />
+                <ScalarProperty Name="Straße" ColumnName="Straße" />
+                <ScalarProperty Name="Ort" ColumnName="Ort" />
+                <ScalarProperty Name="Region" ColumnName="Region" />
+                <ScalarProperty Name="PLZ" ColumnName="PLZ" />
+                <ScalarProperty Name="Land" ColumnName="Land" />
+                <ScalarProperty Name="Telefon" ColumnName="Telefon" />
+                <ScalarProperty Name="Telefax" ColumnName="Telefax" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Lieferanten">
+            <EntityTypeMapping TypeName="Nordwind.Lieferanten">
+              <MappingFragment StoreEntitySet="Lieferanten">
+                <ScalarProperty Name="Lieferanten_Nr" ColumnName="Lieferanten_Nr" />
+                <ScalarProperty Name="Firma" ColumnName="Firma" />
+                <ScalarProperty Name="Kontaktperson" ColumnName="Kontaktperson" />
+                <ScalarProperty Name="Position" ColumnName="Position" />
+                <ScalarProperty Name="Straße" ColumnName="Straße" />
+                <ScalarProperty Name="Ort" ColumnName="Ort" />
+                <ScalarProperty Name="Region" ColumnName="Region" />
+                <ScalarProperty Name="PLZ" ColumnName="PLZ" />
+                <ScalarProperty Name="Land" ColumnName="Land" />
+                <ScalarProperty Name="Telefon" ColumnName="Telefon" />
+                <ScalarProperty Name="Telefax" ColumnName="Telefax" />
+                <ScalarProperty Name="Homepage" ColumnName="Homepage" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Personal">
+            <EntityTypeMapping TypeName="Nordwind.Personal">
+              <MappingFragment StoreEntitySet="Personal">
+                <ScalarProperty Name="Personal_Nr" ColumnName="Personal_Nr" />
+                <ScalarProperty Name="Nachname" ColumnName="Nachname" />
+                <ScalarProperty Name="Vorname" ColumnName="Vorname" />
+                <ScalarProperty Name="Position" ColumnName="Position" />
+                <ScalarProperty Name="Anrede" ColumnName="Anrede" />
+                <ScalarProperty Name="Geburtsdatum" ColumnName="Geburtsdatum" />
+                <ScalarProperty Name="Einstellung" ColumnName="Einstellung" />
+                <ScalarProperty Name="Straße" ColumnName="Straße" />
+                <ScalarProperty Name="Ort" ColumnName="Ort" />
+                <ScalarProperty Name="Region" ColumnName="Region" />
+                <ScalarProperty Name="PLZ" ColumnName="PLZ" />
+                <ScalarProperty Name="Land" ColumnName="Land" />
+                <ScalarProperty Name="TelefonPrivat" ColumnName="TelefonPrivat" />
+                <ScalarProperty Name="DurchwahlBuero" ColumnName="DurchwahlBuero" />
+                <ScalarProperty Name="Foto" ColumnName="Foto" />
+                <ScalarProperty Name="Bemerkungen" ColumnName="Bemerkungen" />
+                <ScalarProperty Name="Vorgesetzter" ColumnName="Vorgesetzter" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="Nordwind.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Versandfirmen">
+            <EntityTypeMapping TypeName="Nordwind.Versandfirmen">
+              <MappingFragment StoreEntitySet="Versandfirmen">
+                <ScalarProperty Name="Firmen_Nr" ColumnName="Firmen_Nr" />
+                <ScalarProperty Name="Firma" ColumnName="Firma" />
+                <ScalarProperty Name="Telefon" ColumnName="Telefon" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Kein" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
