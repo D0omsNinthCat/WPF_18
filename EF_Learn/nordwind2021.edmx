@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="Nordwind.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="nordwind2021Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Artikel">
           <Key>
             <PropertyRef Name="Artikel_Nr" />
@@ -230,7 +230,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="NordwindStoreContainer">
+        <EntityContainer Name="nordwind2021ModelStoreContainer">
           <EntitySet Name="Artikel" EntityType="Self.Artikel" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Bestelldetails" EntityType="Self.Bestelldetails" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Bestellungen" EntityType="Self.Bestellungen" Schema="dbo" store:Type="Tables" />
@@ -277,7 +277,7 @@
     </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="Nordwind" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="nordwind2021Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="Artikel">
           <Key>
             <PropertyRef Name="Artikel_Nr" />
@@ -519,7 +519,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="NordwindEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="nordwind2021Entities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Artikel" EntityType="Self.Artikel" />
           <EntitySet Name="Bestelldetails" EntityType="Self.Bestelldetails" />
           <EntitySet Name="Bestellungen" EntityType="Self.Bestellungen" />
@@ -567,9 +567,9 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="NordwindStoreContainer" CdmEntityContainer="NordwindEntities">
+        <EntityContainerMapping StorageEntityContainer="nordwind2021ModelStoreContainer" CdmEntityContainer="nordwind2021Entities">
           <EntitySetMapping Name="Artikel">
-            <EntityTypeMapping TypeName="Nordwind.Artikel">
+            <EntityTypeMapping TypeName="nordwind2021Model.Artikel">
               <MappingFragment StoreEntitySet="Artikel">
                 <ScalarProperty Name="Artikel_Nr" ColumnName="Artikel_Nr" />
                 <ScalarProperty Name="Artikelname" ColumnName="Artikelname" />
@@ -585,7 +585,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Bestelldetails">
-            <EntityTypeMapping TypeName="Nordwind.Bestelldetails">
+            <EntityTypeMapping TypeName="nordwind2021Model.Bestelldetails">
               <MappingFragment StoreEntitySet="Bestelldetails">
                 <ScalarProperty Name="Bestell_Nr" ColumnName="Bestell_Nr" />
                 <ScalarProperty Name="Artikel_Nr" ColumnName="Artikel_Nr" />
@@ -596,7 +596,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Bestellungen">
-            <EntityTypeMapping TypeName="Nordwind.Bestellungen">
+            <EntityTypeMapping TypeName="nordwind2021Model.Bestellungen">
               <MappingFragment StoreEntitySet="Bestellungen">
                 <ScalarProperty Name="Bestell_Nr" ColumnName="Bestell_Nr" />
                 <ScalarProperty Name="Kunden_Code" ColumnName="Kunden_Code" />
@@ -616,7 +616,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Kategorien">
-            <EntityTypeMapping TypeName="Nordwind.Kategorien">
+            <EntityTypeMapping TypeName="nordwind2021Model.Kategorien">
               <MappingFragment StoreEntitySet="Kategorien">
                 <ScalarProperty Name="Kategorie_Nr" ColumnName="Kategorie_Nr" />
                 <ScalarProperty Name="Kategoriename" ColumnName="Kategoriename" />
@@ -626,7 +626,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Kunden">
-            <EntityTypeMapping TypeName="Nordwind.Kunden">
+            <EntityTypeMapping TypeName="nordwind2021Model.Kunden">
               <MappingFragment StoreEntitySet="Kunden">
                 <ScalarProperty Name="Kunden_Code" ColumnName="Kunden_Code" />
                 <ScalarProperty Name="Firma" ColumnName="Firma" />
@@ -643,7 +643,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Lieferanten">
-            <EntityTypeMapping TypeName="Nordwind.Lieferanten">
+            <EntityTypeMapping TypeName="nordwind2021Model.Lieferanten">
               <MappingFragment StoreEntitySet="Lieferanten">
                 <ScalarProperty Name="Lieferanten_Nr" ColumnName="Lieferanten_Nr" />
                 <ScalarProperty Name="Firma" ColumnName="Firma" />
@@ -661,7 +661,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Personal">
-            <EntityTypeMapping TypeName="Nordwind.Personal">
+            <EntityTypeMapping TypeName="nordwind2021Model.Personal">
               <MappingFragment StoreEntitySet="Personal">
                 <ScalarProperty Name="Personal_Nr" ColumnName="Personal_Nr" />
                 <ScalarProperty Name="Nachname" ColumnName="Nachname" />
@@ -684,7 +684,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="sysdiagrams">
-            <EntityTypeMapping TypeName="Nordwind.sysdiagrams">
+            <EntityTypeMapping TypeName="nordwind2021Model.sysdiagrams">
               <MappingFragment StoreEntitySet="sysdiagrams">
                 <ScalarProperty Name="name" ColumnName="name" />
                 <ScalarProperty Name="principal_id" ColumnName="principal_id" />
@@ -695,7 +695,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Versandfirmen">
-            <EntityTypeMapping TypeName="Nordwind.Versandfirmen">
+            <EntityTypeMapping TypeName="nordwind2021Model.Versandfirmen">
               <MappingFragment StoreEntitySet="Versandfirmen">
                 <ScalarProperty Name="Firmen_Nr" ColumnName="Firmen_Nr" />
                 <ScalarProperty Name="Firma" ColumnName="Firma" />
@@ -720,7 +720,7 @@
         <DesignerProperty Name="EnablePluralization" Value="false" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
         <DesignerProperty Name="UseLegacyProvider" Value="false" />
-        <DesignerProperty Name="CodeGenerationStrategy" Value="Kein" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
       </DesignerInfoPropertySet>
     </Options>
     <!-- Diagram content (shape and connector positions) -->

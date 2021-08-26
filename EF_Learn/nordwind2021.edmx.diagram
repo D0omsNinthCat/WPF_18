@@ -4,24 +4,24 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="cc2b8772bddc4a1582b534abc0b2ca7f" Name="Diagram1">
-        <EntityTypeShape EntityType="Nordwind.Artikel" Width="1.5" PointX="3" PointY="18.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="Nordwind.Bestelldetails" Width="1.5" PointX="5.25" PointY="2.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="Nordwind.Bestellungen" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="Nordwind.Kategorien" Width="1.5" PointX="0.75" PointY="17.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="Nordwind.Kunden" Width="1.5" PointX="0.75" PointY="1.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="Nordwind.Lieferanten" Width="1.5" PointX="0.75" PointY="20.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="Nordwind.Personal" Width="1.5" PointX="0.75" PointY="8.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="Nordwind.sysdiagrams" Width="1.5" PointX="5.75" PointY="5.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="Nordwind.Versandfirmen" Width="1.5" PointX="0.75" PointY="14.5" IsExpanded="true" />
-        <AssociationConnector Association="Nordwind.Artikel_FK00" ManuallyRouted="false" />
-        <AssociationConnector Association="Nordwind.Artikel_FK01" ManuallyRouted="false" />
-        <AssociationConnector Association="Nordwind.Bestelldetails_FK00" ManuallyRouted="false" />
-        <AssociationConnector Association="Nordwind.Bestelldetails_FK01" ManuallyRouted="false" />
-        <AssociationConnector Association="Nordwind.Bestellungen_FK00" ManuallyRouted="false" />
-        <AssociationConnector Association="Nordwind.Bestellungen_FK01" ManuallyRouted="false" />
-        <AssociationConnector Association="Nordwind.Bestellungen_FK02" ManuallyRouted="false" />
-        <AssociationConnector Association="Nordwind.FK_Personal_Personal" ManuallyRouted="false" />
+      <Diagram DiagramId="9df7bc887ea545d0a1eba923cbbdd052" Name="Diagram1">
+        <EntityTypeShape EntityType="nordwind2021Model.Artikel" Width="1.5" PointX="3" PointY="18.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="nordwind2021Model.Bestelldetails" Width="1.5" PointX="5.25" PointY="2.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="nordwind2021Model.Bestellungen" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="nordwind2021Model.Kategorien" Width="1.5" PointX="0.75" PointY="17.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="nordwind2021Model.Kunden" Width="1.5" PointX="0.75" PointY="1.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="nordwind2021Model.Lieferanten" Width="1.5" PointX="0.75" PointY="20.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="nordwind2021Model.Personal" Width="1.5" PointX="0.75" PointY="8.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="nordwind2021Model.sysdiagrams" Width="1.5" PointX="5.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="nordwind2021Model.Versandfirmen" Width="1.5" PointX="0.75" PointY="14.5" IsExpanded="true" />
+        <AssociationConnector Association="nordwind2021Model.Artikel_FK00" ManuallyRouted="false" />
+        <AssociationConnector Association="nordwind2021Model.Artikel_FK01" ManuallyRouted="false" />
+        <AssociationConnector Association="nordwind2021Model.Bestelldetails_FK00" ManuallyRouted="false" />
+        <AssociationConnector Association="nordwind2021Model.Bestelldetails_FK01" ManuallyRouted="false" />
+        <AssociationConnector Association="nordwind2021Model.Bestellungen_FK00" ManuallyRouted="false" />
+        <AssociationConnector Association="nordwind2021Model.Bestellungen_FK01" ManuallyRouted="false" />
+        <AssociationConnector Association="nordwind2021Model.Bestellungen_FK02" ManuallyRouted="false" />
+        <AssociationConnector Association="nordwind2021Model.FK_Personal_Personal" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
