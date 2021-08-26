@@ -124,6 +124,17 @@ namespace EF_Learn
         {
             popup_Overview.IsOpen = true;
 
+            var query_Ort = (from u in context.Personal select u.Ort).Distinct().ToList();
+            foreach(var Ort in query_Ort)
+            {
+                
+                var query_Perc = (from i in context.Personal
+                                  where i.Ort == Ort
+                                  select i).Count();
+                Console.WriteLine(query_Perc);
+                listbox_Personal.Items.Add(Ort.ToString() + " - " + query_Perc.ToString());
+            }
+
         }
     }
 }

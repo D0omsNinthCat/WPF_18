@@ -21,7 +21,7 @@
         <ComboBox x:Name="CB_Stadt" HorizontalAlignment="Left" Margin="59,44,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="CB_Stadt_SelectionChanged"/>
         <ListBox x:Name="LB_Personal" Grid.Column="1" HorizontalAlignment="Left" Height="219" VerticalAlignment="Top" Width="264" SelectionChanged="LB_Personal_SelectionChanged"/>
         <Button x:Name="button_Overview" Content="Overview" Grid.Column="2" HorizontalAlignment="Stretch" Margin="30,250,30,0" VerticalAlignment="Top" Height="30" Click="button_Overview_Click"/>
-        <Popup x:Name="popup_Overview" StaysOpen="False" Placement="Mouse">
+        <Popup x:Name="popup_Overview" StaysOpen="False" Placement="Center">
             <ListBox x:Name="listbox_Personal" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Width="100" Height="200">
                 
             </ListBox>
