@@ -20,7 +20,7 @@ namespace EF_Learn
     /// </summary>
     public partial class MainWindow : Window
     {
-        private NordwindEntities context;
+        private nordwind2021Entities context;
         public MainWindow()
         {
             InitializeComponent();
@@ -28,7 +28,7 @@ namespace EF_Learn
 
         private void Window_Initialized(object sender, EventArgs e)
         {
-            context = new NordwindEntities();
+            context = new nordwind2021Entities();
 
             List<String> liste = (from s in context.Personal
                                   select s.Ort).Distinct().ToList();
