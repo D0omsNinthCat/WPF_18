@@ -119,5 +119,11 @@ namespace EF_Learn
                 counter++;
             }
         }
+
+        private void button_Overview_Click(object sender, RoutedEventArgs e)
+        {
+            popup_Overview.IsOpen = true;
+
+        }
     }
 }
