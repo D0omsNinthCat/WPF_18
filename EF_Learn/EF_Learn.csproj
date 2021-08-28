@@ -111,6 +111,7 @@
     <Compile Include="Versandfirmen.cs">
       <DependentUpon>nordwind2021.tt</DependentUpon>
     </Compile>
+    <Compile Include="ViewModel\MainViewModel.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
